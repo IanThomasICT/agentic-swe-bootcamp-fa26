@@ -5,7 +5,7 @@ import * as readline from "node:readline/promises";
 import { readFile } from "node:fs/promises";
 
 if (!process.env.OPENROUTER_API_KEY) {
-  console.error("Set OPENROUTER_API_KEY first. See README.md.");
+  console.error("No OPENROUTER_API_KEY. Run setup, then run the agent from week2/coding-agent. See README.md.");
   process.exit(1);
 }
 

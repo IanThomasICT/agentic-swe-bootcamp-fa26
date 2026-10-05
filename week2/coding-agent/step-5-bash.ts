@@ -8,7 +8,7 @@ import { dirname } from "node:path";
 import { execSync } from "node:child_process";
 
 if (!process.env.OPENROUTER_API_KEY) {
-  console.error("Set OPENROUTER_API_KEY first. See README.md.");
+  console.error("No OPENROUTER_API_KEY. Run setup, then run the agent from week2/coding-agent. See README.md.");
   process.exit(1);
 }
 

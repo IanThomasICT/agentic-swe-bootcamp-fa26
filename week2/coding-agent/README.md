@@ -1,6 +1,6 @@
 # Week 2: Build a Coding Agent
 
-A coding agent is an LLM, a few tools, and a loop. We build one together in class, one step at a time. Each file is the complete agent up to that step, so you can run any step on its own.
+A coding agent is an LLM, a few tools, and a loop. We build one together in class, one step at a time, in `main.ts`. Each `step-N` file is the complete agent up to that step, so you can run any step on its own.
 
 | Step | File | What it adds | Try |
 |---|---|---|---|
@@ -14,60 +14,42 @@ A coding agent is an LLM, a few tools, and a loop. We build one together in clas
 
 ## Setup
 
-### 1. Install Bun
+First, get a free OpenRouter key: go to [openrouter.ai/keys](https://openrouter.ai/keys), sign in with Google or GitHub, click **Create Key**, and copy it.
+
+Then clone the repo and run setup. It checks for git and Bun (installs them if missing), asks for your key, saves it to `week2/coding-agent/.env`, and runs `bun install`.
 
 **Mac / Linux / Git Bash:**
-
-```bash
-curl -fsSL https://bun.sh/install | bash
-```
-
-**Windows (PowerShell):**
-
-```powershell
-powershell -c "irm bun.sh/install.ps1 | iex"
-```
-
-Open a new terminal, then verify: `bun --version`
-
-### 2. Get an OpenRouter key
-
-1. Go to [openrouter.ai/keys](https://openrouter.ai/keys) and sign in with Google or GitHub.
-2. Click **Create Key** and copy it.
-
-### 3. Set the key in your terminal
-
-**Mac / Linux / Git Bash:**
-
-```bash
-export OPENROUTER_API_KEY="sk-or-v1-..."
-```
-
-**Windows (PowerShell):**
-
-```powershell
-$env:OPENROUTER_API_KEY = "sk-or-v1-..."
-```
-
-The key lasts for this terminal only. Open a new terminal, set it again. **Never commit a key to git.**
-
-## Run
 
 ```bash
 git clone https://github.com/IanThomasICT/agentic-swe-bootcamp-fa26.git
-cd agentic-swe-bootcamp-fa26/week2/coding-agent
-bun install
-bun step-1-chat.ts
+cd agentic-swe-bootcamp-fa26
+bash setup.sh
 ```
 
-Type `exit` to quit.
+**Windows (PowerShell or Command Prompt):**
 
-The agent works on the folder you run it from. To point it at your team's `RESEARCH.md`, run it from that folder:
+```powershell
+git clone https://github.com/IanThomasICT/agentic-swe-bootcamp-fa26.git
+cd agentic-swe-bootcamp-fa26
+.\setup.bat
+```
+
+No git yet? Download the repo as a ZIP from GitHub (**Code** > **Download ZIP**), unzip it, and run setup from that folder. On Windows you can double-click `setup.bat`.
+
+`.env` is in `.gitignore`. **Never commit a key to git.**
+
+## Run
+
+Everything runs from `week2/coding-agent`, where your `.env` lives:
 
 ```bash
-cd path/to/your-team-folder
-bun path/to/agentic-swe-bootcamp-fa26/week2/coding-agent/step-2-read.ts
+cd week2/coding-agent
+bun main.ts
 ```
+
+Build your agent in `main.ts`, one step at a time; its sections show where each step's code goes. Behind? Run the step's finished file instead, for example `bun step-2-read.ts`. Type `exit` to quit.
+
+To ask the agent about your team's `RESEARCH.md`, copy it into `week2/coding-agent` first. The agent works on the folder you run it from.
 
 ## Free models
 
