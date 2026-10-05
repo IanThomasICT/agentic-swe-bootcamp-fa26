@@ -75,7 +75,7 @@ We use free OpenRouter models (IDs end in `:free`). Things to know:
 
 - **Daily limit:** 50 requests per day and 20 per minute. Every trip around the agent loop is one request.
 - **Your data:** free models may use your prompts and files for training. Don't point the agent at anything confidential.
-- **Models come and go.** If you get an error about the model, pick another free model with tool support at [openrouter.ai/models](https://openrouter.ai/models?max_price=0&supported_parameters=tools) and change `model` at the top of the file.
+- **Models come and go.** If you get an error about the model, pick another free model with tool support at [openrouter.ai/models](https://openrouter.ai/models?max_price=0&supported_parameters=tools) and change `model` at the top of the file. Backup that works today: `nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free`.
 
 On Windows, `run_command` runs in `cmd.exe`, so ask for Windows commands (`dir`, not `ls`).
 
