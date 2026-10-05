@@ -10,7 +10,7 @@ A coding agent is an LLM, a few tools, and a loop. We build one together in clas
 | 4 | `step-4-edit.ts` | `edit_file`. It changes files without asking. | "Create fizzbuzz.ts that prints FizzBuzz from 1 to 20." |
 | 5 | `step-5-bash.ts` | `run_command`, behind a `[y/N]` prompt. | "Run fizzbuzz.ts with bun. If anything is wrong, fix it." |
 
-`step-5-bash.ts` is the finished agent: about 135 lines, 4 tools, 2 loops.
+`step-5-bash.ts` is the finished agent: about 170 lines, 4 tools, 2 loops. It uses the [OpenAI SDK](https://github.com/openai/openai-node) pointed at OpenRouter, since OpenRouter speaks the OpenAI API.
 
 ## Setup
 
@@ -56,6 +56,7 @@ The key lasts for this terminal only. Open a new terminal, set it again. **Never
 ```bash
 git clone https://github.com/IanThomasICT/agentic-swe-bootcamp-fa26.git
 cd agentic-swe-bootcamp-fa26/week2/coding-agent
+bun install
 bun step-1-chat.ts
 ```
 
@@ -74,7 +75,7 @@ We use free OpenRouter models (IDs end in `:free`). Things to know:
 
 - **Daily limit:** 50 requests per day and 20 per minute. Every trip around the agent loop is one request.
 - **Your data:** free models may use your prompts and files for training. Don't point the agent at anything confidential.
-- **Models come and go.** If you get an error about the model, pick another free model with tool support at [openrouter.ai/models](https://openrouter.ai/models?max_price=0&supported_parameters=tools) and change `MODEL` at the top of the file.
+- **Models come and go.** If you get an error about the model, pick another free model with tool support at [openrouter.ai/models](https://openrouter.ai/models?max_price=0&supported_parameters=tools) and change `model` at the top of the file.
 
 On Windows, `run_command` runs in `cmd.exe`, so ask for Windows commands (`dir`, not `ls`).
 
