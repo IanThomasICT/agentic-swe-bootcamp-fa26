@@ -1,13 +1,14 @@
 // The advanced agent: the full SP26 TypeScript agent in one file.
 // Adds streaming (with a non-streaming fallback), a loading spinner, colored output,
 // <think> reasoning display, and AGENTS.md loaded as the system prompt.
-// Tools: read_file, list_files, edit_file (no run_command).
+// Tools: read_file, list_files, edit_file, run_command (asks before it runs).
 // Run: bun advanced-agent.ts
 import OpenAI from "openai";
 import * as readline from "node:readline";
 import { readFile, writeFile, readdir } from "fs/promises";
 import { existsSync, mkdirSync, writeFileSync } from "fs";
 import * as path from "node:path";
+import { execSync } from "node:child_process";
 import type { JSONSchema } from "openai/lib/jsonschema.mjs";
 
 interface ToolDefinition {
@@ -136,7 +137,34 @@ If the file specified with path doesn't exist, it will be created.`,
   },
 };
 
-const tools = [ReadFileDefinition, ListFilesDefinition, EditFileDefinition];
+const RunCommandDefinition: ToolDefinition = {
+  name: "run_command",
+  description: "Run a terminal command and return its output. Use it to run code and tests.",
+  inputSchema: {
+    type: "object",
+    properties: {
+      command: {
+        type: "string",
+        description: "The command to run",
+      },
+    },
+    required: ["command"],
+  },
+  async function(input: unknown) {
+    const { command } = input as { command: string };
+    const answer = await askUser(`\n  Run \`${command}\`? [y/N] `);
+    if (answer.trim().toLowerCase() !== "y") {
+      return "The user declined to run this command.";
+    }
+    try {
+      return execSync(command, { encoding: "utf8", stdio: "pipe", timeout: 60_000 }) || "(no output)";
+    } catch (err: any) {
+      return `${err.stdout ?? ""}${err.stderr ?? ""}` || String(err);
+    }
+  },
+};
+
+const tools = [ReadFileDefinition, ListFilesDefinition, EditFileDefinition, RunCommandDefinition];
 
 // ---- Agent ----
 // Using OpenAI SDK (Most popular SDK) since OpenRouter is OpenAI-compatible. Just need to set the baseURL to OpenRouter's endpoint and provide the API key.
