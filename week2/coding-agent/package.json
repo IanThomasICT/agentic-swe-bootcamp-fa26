@@ -3,6 +3,7 @@
   "private": true,
   "type": "module",
   "dependencies": {
+    "@anthropic-ai/sdk": "^0.131.0",
     "openai": "^6.33.0"
   },
   "devDependencies": {
