@@ -8,7 +8,7 @@ Code and exercises for the Newman University Agentic Software Engineering Bootca
 
 ## Setup
 
-Clone this repo, then run `bash setup.sh` (Mac, Linux, Git Bash) or `.\setup.bat` (Windows). See [week2/coding-agent](week2/coding-agent/) for details.
+Clone this repo, then run `bash scripts/setup.sh` (Mac, Linux, Git Bash) or `.\scripts\setup.bat` (Windows). To see which free models are available right now, run `bash scripts/list-available-models.sh` or `.\scripts\list-available-models.bat` (add `--all` for every free model). See [week2/coding-agent](week2/coding-agent/) for details.
 
 ## Prerequisites
 

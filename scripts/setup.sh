@@ -2,10 +2,10 @@
 # Setup for the Week 2 coding agent (Mac, Linux, Git Bash).
 # Checks git and Bun (installs them if missing), saves your OpenRouter key to
 # week2/coding-agent/.env, and installs the agent's packages.
-# Run from anywhere: bash setup.sh
+# Run from the repo root: bash scripts/setup.sh
 set -euo pipefail
 
-ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 AGENT_DIR="$ROOT/week2/coding-agent"
 ENV_FILE="$AGENT_DIR/.env"
 OS="$(uname -s)"

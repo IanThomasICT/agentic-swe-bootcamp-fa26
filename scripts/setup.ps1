@@ -1,11 +1,11 @@
 # Setup for the Week 2 coding agent (Windows PowerShell).
 # Checks git and Bun (installs them if missing), saves your OpenRouter key to
 # week2\coding-agent\.env, and installs the agent's packages.
-# Run: .\setup.bat   (or: powershell -ExecutionPolicy Bypass -File setup.ps1)
+# Run from the repo root: .\scripts\setup.bat   (or: powershell -ExecutionPolicy Bypass -File scripts\setup.ps1)
 $ErrorActionPreference = "Stop"
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 
-$AgentDir = Join-Path $PSScriptRoot "week2\coding-agent"
+$AgentDir = Join-Path (Split-Path $PSScriptRoot -Parent) "week2\coding-agent"
 $EnvFile = Join-Path $AgentDir ".env"
 $NewTerminal = $false
 

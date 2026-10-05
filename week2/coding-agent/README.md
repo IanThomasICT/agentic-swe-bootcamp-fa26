@@ -23,7 +23,7 @@ Then clone the repo and run setup. It checks for git and Bun (installs them if m
 ```bash
 git clone https://github.com/IanThomasICT/agentic-swe-bootcamp-fa26.git
 cd agentic-swe-bootcamp-fa26
-bash setup.sh
+bash scripts/setup.sh
 ```
 
 **Windows (PowerShell or Command Prompt):**
@@ -31,10 +31,10 @@ bash setup.sh
 ```powershell
 git clone https://github.com/IanThomasICT/agentic-swe-bootcamp-fa26.git
 cd agentic-swe-bootcamp-fa26
-.\setup.bat
+.\scripts\setup.bat
 ```
 
-No git yet? Download the repo as a ZIP from GitHub (**Code** > **Download ZIP**), unzip it, and run setup from that folder. On Windows you can double-click `setup.bat`.
+No git yet? Download the repo as a ZIP from GitHub (**Code** > **Download ZIP**), unzip it, and run setup from that folder. On Windows you can double-click `scripts\setup.bat`.
 
 `.env` is in `.gitignore`. **Never commit a key to git.**
 
@@ -57,7 +57,14 @@ We use free OpenRouter models (IDs end in `:free`). Things to know:
 
 - **Daily limit:** 50 requests per day and 20 per minute. Every trip around the agent loop is one request.
 - **Your data:** free models may use your prompts and files for training. Don't point the agent at anything confidential.
-- **Models come and go.** If you get an error about the model, pick another free model with tool support at [openrouter.ai/models](https://openrouter.ai/models?max_price=0&supported_parameters=tools) and change `model` at the top of the file. Backup that works today: `nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free`.
+- **Models come and go.** If you get an error about the model, run this from the repo root to list the free models that support tools, then change `model` at the top of the file:
+
+  ```bash
+  bash scripts/list-available-models.sh        # Mac, Linux, Git Bash
+  .\scripts\list-available-models.bat          # Windows
+  ```
+
+  Add `--all` to see every free model. Backup that worked on Oct 5: `nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free`.
 
 On Windows, `run_command` runs in `cmd.exe`, so ask for Windows commands (`dir`, not `ls`).
 
