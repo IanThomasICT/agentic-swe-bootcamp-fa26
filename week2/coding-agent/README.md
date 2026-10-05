@@ -9,6 +9,7 @@ A coding agent is an LLM, a few tools, and a loop. We build one together in clas
 | 3 | `step-3-list.ts` | `list_files`. It decides what to open. | "What files are here? Summarize each one." |
 | 4 | `step-4-edit.ts` | `edit_file`. It changes files without asking. | "Create fizzbuzz.ts that prints FizzBuzz from 1 to 20." |
 | 5 | `step-5-bash.ts` | `run_command`, behind a `[y/N]` prompt. | "Run fizzbuzz.ts with bun. If anything is wrong, fix it." |
+| + | `advanced-agent.ts` | The full Spring 2026 agent: streaming, a spinner, colored output, `<think>` display, and `AGENTS.md` as the system prompt (read, list, and edit tools; no `run_command`). | "Read AGENTS.md and follow it." |
 
 `step-5-bash.ts` is the finished agent: about 170 lines, 4 tools, 2 loops. It uses the [OpenAI SDK](https://github.com/openai/openai-node) pointed at OpenRouter, since OpenRouter speaks the OpenAI API.
 
