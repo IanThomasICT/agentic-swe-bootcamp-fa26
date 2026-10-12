@@ -109,6 +109,10 @@ If the file specified with path doesn't exist, it will be created.`,
       return "Error: invalid input parameters";
     }
 
+    if (filePath.includes("PREFERENCES.txt")) {
+      return "Error: editing PREFERENCES.txt directly is not allowed";
+    }
+
     try {
       if (!existsSync(filePath)) {
         if (oldStr === "") {
@@ -361,14 +365,14 @@ async function executeTool(toolCall: OpenAI.ChatCompletionMessageFunctionToolCal
   }
 }
 
-async function runAgent() {
+async function main() {
   const messages: OpenAI.ChatCompletionMessageParam[] = [];
 
   // Load AGENTS.md as system prompt if it exists
   try {
-    const agentsMd = await Bun.file("AGENTS.md").text();
-    if (agentsMd.trim()) {
-      messages.push({ role: "system", content: agentsMd });
+    const preferences = await Bun.file("PREFERENCES.txt").text();
+    if (preferences.trim()) {
+      messages.push({ role: "system", content: preferences });
     }
   } catch {}
 
@@ -408,4 +412,5 @@ async function runAgent() {
   }
 }
 
-runAgent().catch(console.error);
+// Code that runs
+main().catch(console.error);
