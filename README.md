@@ -5,6 +5,8 @@ Code and exercises for the Newman University Agentic Software Engineering Bootca
 | Week | Topic | Folder |
 |------|-------|--------|
 | 2 | Build a coding agent: an LLM, four tools, and a loop, in TypeScript with Bun and OpenRouter | [week2/coding-agent](week2/coding-agent/) |
+| 3 | Investigate and plan on a shared API | [week3](week3/) |
+| 4 | Write and test rules for your project | [week4](week4/) |
 
 ## Setup
 
