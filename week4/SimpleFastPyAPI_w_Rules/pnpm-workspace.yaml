@@ -1,0 +1,4 @@
+# pnpm 12 requires project-level approval for dependency install scripts.
+# Vite's esbuild dependency uses an install script to select its platform binary.
+allowBuilds:
+  esbuild: true
