@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% block title %}User not found{% endblock %}
+
+{% block content %}
+<h1>User not found</h1>
+<p class="empty">No user with id #{{ user_id }}.</p>
+<a class="button" href="/admin/">Back to users</a>
+{% endblock %}

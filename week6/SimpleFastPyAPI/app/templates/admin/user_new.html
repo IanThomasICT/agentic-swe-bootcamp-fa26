@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}New user{% endblock %}
+
+{% block topbar_actions %}
+<form method="post" action="/admin/logout">
+  <button type="submit" class="link-button">Sign out</button>
+</form>
+{% endblock %}
+
+{% block content %}
+<h1>Add user</h1>
+
+<form method="post" action="/admin/users/" class="card form">
+  <label for="name">Name</label>
+  <input id="name" name="name" type="text" value="{{ name|default('', true) }}" required>
+
+  <label for="email">Email</label>
+  <input id="email" name="email" type="email" value="{{ email|default('', true) }}" required>
+
+  <label for="password">Password</label>
+  <input id="password" name="password" type="password" autocomplete="new-password" required>
+
+  <div class="actions">
+    <button type="submit">Create user</button>
+    <a class="button ghost" href="/admin/">Cancel</a>
+  </div>
+</form>
+{% endblock %}

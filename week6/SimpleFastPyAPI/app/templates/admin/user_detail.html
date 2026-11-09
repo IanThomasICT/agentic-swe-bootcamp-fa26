@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}User {{ user.id }}{% endblock %}
+
+{% block topbar_actions %}
+<form method="post" action="/admin/logout">
+  <button type="submit" class="link-button">Sign out</button>
+</form>
+{% endblock %}
+
+{% block content %}
+<h1>User #{{ user.id }}</h1>
+
+<form method="post" action="/admin/users/{{ user.id }}" class="card form">
+  <label for="name">Name</label>
+  <input id="name" name="name" type="text"
+         value="{{ form_name|default(user.name, true) }}" required>
+
+  <label for="email">Email</label>
+  <input id="email" name="email" type="email"
+         value="{{ form_email|default(user.email, true) }}" required>
+
+  <label for="password">New password</label>
+  <input id="password" name="password" type="password" autocomplete="new-password">
+  <p class="hint">Leave blank to keep the current password. Passwords are stored hashed and are never shown here.</p>
+
+  <div class="actions">
+    <button type="submit">Save changes</button>
+    <a class="button ghost" href="/admin/">Back to users</a>
+  </div>
+</form>
+
+<form method="post" action="/admin/users/{{ user.id }}/delete" class="card danger-zone"
+      onsubmit="return confirm('Delete this user? This cannot be undone.');">
+  <h2>Delete</h2>
+  <p class="hint">Removes user #{{ user.id }} permanently.</p>
+  <button type="submit" class="danger">Delete user</button>
+</form>
+{% endblock %}

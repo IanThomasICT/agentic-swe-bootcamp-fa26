@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block title %}Users{% endblock %}
+
+{% block topbar_actions %}
+<form method="post" action="/admin/logout">
+  <button type="submit" class="link-button">Sign out</button>
+</form>
+{% endblock %}
+
+{% block content %}
+<h1>Users <span class="count">{{ total }}</span></h1>
+
+<div class="toolbar">
+  <form method="get" action="/admin/" class="search">
+    <input type="search" name="q" value="{{ q }}" placeholder="Search name or email">
+    <button type="submit">Search</button>
+    {% if q %}<a class="clear" href="/admin/">Clear</a>{% endif %}
+  </form>
+  <a class="button" href="/admin/users/new">Add user</a>
+</div>
+
+{% if users %}
+<table class="users">
+  <thead>
+    <tr>
+      <th class="id">ID</th>
+      <th>Name</th>
+      <th>Email</th>
+      <th class="actions">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for user in users %}
+    <tr>
+      <td class="id">{{ user.id }}</td>
+      <td>{{ user.name }}</td>
+      <td>{{ user.email }}</td>
+      <td class="actions">
+        <a href="/admin/users/{{ user.id }}">Edit</a>
+        <form method="post" action="/admin/users/{{ user.id }}/delete"
+              onsubmit="return confirm('Delete {{ user.name }}? This cannot be undone.');">
+          <button type="submit" class="danger">Delete</button>
+        </form>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<p class="empty">No users found{% if q %} for &ldquo;{{ q }}&rdquo;{% endif %}.</p>
+{% endif %}
+{% endblock %}

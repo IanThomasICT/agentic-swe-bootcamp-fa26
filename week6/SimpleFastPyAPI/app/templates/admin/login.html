@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}Sign in{% endblock %}
+
+{% block content %}
+<h1>Admin sign in</h1>
+<p class="hint">Paste the <code>ADMIN_TOKEN</code> configured for this server.</p>
+
+<form method="post" action="/admin/login" class="card form">
+  <input type="hidden" name="next" value="{{ next }}">
+  <label for="token">Admin token</label>
+  <input id="token" name="token" type="password" autocomplete="off" required>
+  <button type="submit">Sign in</button>
+</form>
+{% endblock %}
